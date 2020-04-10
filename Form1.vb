@@ -20,17 +20,22 @@ Public Class Form1
 
     Private Sub btnPlus_Click(sender As Object, e As EventArgs) Handles btnPlus.Click
         Try
-            Dim n1 As Integer
-            Dim n2 As Integer
+            Dim firstNum As Integer
+            Dim secondNum As Integer
 
 
-            n1 = CInt(txtSum1.Text)
-            n2 = CInt(txtSum2.Text)
+            firstNum = CInt(txtSum1.Text)
+            secondNum = CInt(txtSum2.Text)
 
-            txtSum3.Text = n1 + n2
+            txtSum3.Text = CStr(firstNum + secondNum)
+
+        Catch ex As System.InvalidCastException
+            MessageBox.Show("The value entered should be a number", "Error")
+
         Catch ex As Exception
-
+            MessageBox.Show("An ivalid error occurred", "Error")
         End Try
 
     End Sub
 End Class
+
