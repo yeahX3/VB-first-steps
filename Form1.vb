@@ -148,7 +148,7 @@ Public Class Form1
         'https://docs.microsoft.com/en-us/visualstudio/debugger/using-tracepoints?view=vs-2019
 
     End Sub
-    '-----------------------------------------------------------------------------------------------
+    '--------------------------------------------------------------------------------------------------
     '--------------------------------FORMATTING DATE TYPE----------------------------------------------
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnDateType.Click
@@ -203,5 +203,66 @@ Public Class Form1
         txtOutput.Text = strResult
 
     End Sub
+
+    '--------------------------------------------------------------------------------------------------
+    '--------------------------------TESTING FUCTIONS--------------------------------------------------
+    Private Sub btnFunc_Click(sender As Object, e As EventArgs) Handles btnFunc.Click
+        showMessage()
+
+        Dim result As String = CType(SumNumbers(5, 6), String)
+
+        txtOutput.Text = ""
+        txtOutput.Text = txtOutput.Text & "The sum of 5 and 6 equals to: " & result & Environment.NewLine
+
+        Dim number As Integer = 10
+        paramByValue(number)
+        txtOutput.Text = txtOutput.Text & "Passing 10 by Value does NOT change original: " & number & Environment.NewLine
+
+        paramByReference(number)
+        txtOutput.Text = txtOutput.Text & "Passing 10 by Reference DOES change original: " & number & Environment.NewLine
+
+
+        txtOutput.Text = txtOutput.Text & "Function that receives many parameters 'sum 2,4,6,8': " & manyParamSum(2, 4, 6, 8) & Environment.NewLine
+
+
+
+
+    End Sub
+
+
+    ' FUNCTIONS MADE BY ME TO TEST
+    Private Sub showMessage()
+        MessageBox.Show("Message from inside a function", "Tittlebar")
+    End Sub
+
+    'NOTE: If declared as Sub, it cannot return a value
+    Private Function SumNumbers(num1 As Integer, num2 As Integer)
+        Return num1 + num2
+    End Function
+
+    'FUNCTION RECEIVES PARAMETER BY VALUE
+    Private Function paramByValue(num1 As Integer)
+        'changing value here will not affect tha value of original variable
+        num1 = 35
+    End Function
+
+
+    'FUNCTION RECEIVES PARAMETER BY REFERENCE
+    Private Function paramByReference(ByRef num1 As Integer)
+        'Changing value here WILL affect original variable
+        num1 = 40
+    End Function
+
+
+    'FUNCTION RECEIVES A VARIABLE AMOUNT OF PARAMETERS IN AN ARRAY, (AND SUMS THEM)
+    Private Function manyParamSum(ByVal ParamArray numbers() As Integer)
+        Dim sum As Integer
+
+        For i As Integer = 0 To numbers.Length - 1
+            sum = sum + numbers(i)
+        Next
+        Return sum
+    End Function
+
 End Class
 
