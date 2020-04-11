@@ -346,5 +346,56 @@ Public Class Form1
 
     End Sub
 
+    '--------------------------------------------------------------------------------------------------
+    '--------------------------------ARRAYS------------------------- ----------------------------------
+    Private Sub btnArray_Click(sender As Object, e As EventArgs) Handles btnArray.Click
+        Dim strOutput As String = ""
 
+        'CREATING AN ARRAY 
+        Dim customers() As String = {"Bob", "Sally", "Manny"}
+        'CREATING AN ARRAY
+        Dim Employees = New String() {"Paul", "Sally", "Jack"}
+
+        'LOOK AT A SPECIFIC POSITION
+        Console.WriteLine(customers(2))
+
+        'SORT CUSTOMERS ALPHABETICALLY
+        Array.Sort(customers)
+
+        'REVERSE ARRAY
+        Array.Reverse(customers)
+
+        'CHANGE SIZE OF ARRAY PRESERVING CURRENT VALUES
+        ReDim Preserve customers(5) '<--if the word Preserve was not included, i would get an empty array 
+
+        'cycle through the elements        
+        For Each person As String In Employees     'creating a variable of the same type, holds one position of the array at the time
+            Console.WriteLine(person & Environment.NewLine) 'printing that variable
+        Next
+
+        'CREATE MULTI DIMENSIONAL ARRAY
+        Dim matrix(4, 4) As String
+
+        'POPULATE MULTI DIMENSIONAL ARRAY
+        For i As Integer = 0 To 2
+            For j As Integer = 0 To 2
+                matrix(i, j) = i & j
+                strOutput += (i & j & " ")
+            Next
+            strOutput += Environment.NewLine
+        Next
+
+        txtOutput.Text = strOutput
+    End Sub
+
+    '--------------------------------------------------------------------------------------------------
+    '--------------------------------RANDON (IN A GIVEN RANGE)-----------------------------------------
+    Private Sub btnRandom_Click(sender As Object, e As EventArgs) Handles btnRandom.Click
+        'CREATE A RANDOM VALUE (in the range we want)
+        Dim UpperBound = 0
+        Dim LowerBound = 10
+        Dim RandomValue = CInt(Math.Floor((UpperBound - LowerBound + 1) * Rnd())) + LowerBound
+
+        txtOutput.Text = "Random vlue between 0 ans 10 is: " & RandomValue
+    End Sub
 End Class
