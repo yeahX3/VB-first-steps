@@ -60,6 +60,10 @@ Public Class Form1
         txtOutput.Text = CType(strResult, String)
     End Sub
 
+
+    '-----------------------------------------------------------------------------------------------
+    '--------------------------------TESTING STRING LIBRARY-----------------------------------------
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
         Dim strResult As String
@@ -69,8 +73,17 @@ Public Class Form1
 
         strResult = strResult & "The original string is: " & strSample & Environment.NewLine
         strResult = strResult & "The length of this string is: " & strSample.Length & Environment.NewLine
+
+        'FIRST n CHARACTERS IN A STRING
         strResult = strResult & "The first four characters are: " & strSample.Substring(0, 4) & Environment.NewLine
+
+        'REPLACING A SUBSTRING
         strResult = strResult & "Replacing 'Computer for Laptop: " & strSample.Replace("laptop", "Computer") & Environment.NewLine
+
+        'SEARCHING FOR FIRST INSTANCE A CHARACTER OR SUBSTRING
+        strResult = strResult & "Searching for the first 'i' in 'Merchandise'" & InStr(1, "Merchandise", "i", CompareMethod.Text) & Environment.NewLine 'n4 = show 4 decimals after point
+
+        'FORMATTING NUMBER OUTPUTS
         strResult = strResult & "Formatting 3123.14159 as Thousands:  " & String.Format("{0:n3}", 3123.14159) & Environment.NewLine 'n4 = show 4 decimals after point
         strResult = strResult & "Formatting 3123.14159  as Currency:  " & String.Format("{0:c}", 3123.14159) & Environment.NewLine 'n4 = show 4 decimals after point
         strResult = strResult & "Formatting 3123.14159  with 5 digits and one decimal:  " & String.Format("{0:00000.0}", 3123.14159) & Environment.NewLine 'n4 = show 4 decimals after point
@@ -80,27 +93,59 @@ Public Class Form1
         'p  Displays the number times 100 with the Percent sign next to it
         'e  Displays value as Exponential notation
 
-        strResult = strResult & "Searching for the first 'i' in 'Merchandise'" & InStr(1, "Merchandise", "i", CompareMethod.Text) & Environment.NewLine 'n4 = show 4 decimals after point
 
-        'Joining elements in an array of Strings
+
+        'JOINING ELEMENT IN AN ARRAY OF STRING
         Dim arrayEmployees(0 To 2) As String  'Array of fixed length
         arrayEmployees(0) = "Bob"
         arrayEmployees(1) = "Sally"
         arrayEmployees(2) = "Paul"
-
         Dim strEmployees As String = Join(arrayEmployees, ", ") 'join all elements separated by a comma and a space
-
-        strResult = strResult & "Joining an array of employee names:  " & strEmployees & Environment.NewLine 'n4 = show 4 decimals after point
-
+        strResult = strResult & "Joining an array of employee names:  " & strEmployees & Environment.NewLine
 
 
+        'ARRAY TO STRING, ELEMETS SPLITTED BY A GIVENCHARACTERS
+        strResult = strResult & "Splitting elements in an Array:" & Environment.NewLine
+        'Splitting an array of strings by a set of characters (in this case, a comma and a space)
+        arrayEmployees = Split(strEmployees, ", ") 'Now the String is an Array of strings
+        'Displaying the characters
+        For i As Integer = 0 To arrayEmployees.Length - 1
+            strResult = strResult & "Employee: " & arrayEmployees(i) & Environment.NewLine
+        Next
 
 
+        'GETTING n CHARACTERS AT THE LEFT
+        strResult = strResult & "Getting 3 characters at the left:  " & Strings.Left(strSample, 3) & Environment.NewLine
+
+        'GETTING n CHARACTERS AT THE RIGHT
+        strResult = strResult & "Getting 3 characters at the right:  " & Strings.Right(strSample, 3) & Environment.NewLine
+
+        'UPPERCASE
+        strResult = strResult & "Display string to uppercase  " & Strings.UCase(strSample) & Environment.NewLine
+
+        'LOWERCASE
+        strResult = strResult & "Display string to lowercase  " & Strings.LCase(strSample) & Environment.NewLine
+
+        'REVERSE
+        strResult = strResult & "Display string to uppercase  " & StrReverse(strSample) & Environment.NewLine
+
+        'COMPARING
+        strResult = strResult & "Comparing strings 'Dog' and 'Cat' " & StrComp("Dog", "Cat") & Environment.NewLine
+
+        'TRIM EMPTY SPACES
+        strResult = strResult & "Trimming spaces around '   a string   ': " & Trim("   a string   ") & Environment.NewLine
+
+        'LEFT TRIM
+        strResult = strResult & "Trimming spaces left side of '   a string   ': " & LTrim("   a string   ") & Environment.NewLine
+
+        'RIGHT TRIM
+        strResult = strResult & "Trimming spaces right side of '   a string   ': " & RTrim("   a string   ") & Environment.NewLine
 
         txtOutput.Text = strResult
 
+        'MISC
+        'Tips on using Trace
+        'https://docs.microsoft.com/en-us/visualstudio/debugger/using-tracepoints?view=vs-2019
+
     End Sub
 End Class
-
-
-
