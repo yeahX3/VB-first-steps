@@ -264,5 +264,87 @@ Public Class Form1
         Return sum
     End Function
 
-End Class
 
+    '--------------------------------------------------------------------------------------------------
+    '--------------------------------IF, CASE, FOR, DoUNTIL,DoWHILE, ----------------------------------
+
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
+
+        Dim var1 As Integer
+
+        Dim sampleAnswer As Boolean
+
+        'SHORT IF
+        If var1 = 18 Then sampleAnswer = True : sampleAnswer = False    '<--- equals is only one equal symbol
+
+        'OTHER SHORT IF
+        sampleAnswer = If(var1 >= 18, True, False)
+
+        'REGULAR  IF
+        If 20 > 10 Then
+            var1 = 1
+        Else
+            var1 = 2
+        End If
+
+
+        'USING ELSE IF
+        If 20 > 10 Then
+            var1 = 1
+        ElseIf 30 > 20 Then
+            var1 = 2
+        Else
+            var1 = 3
+        End If
+
+        'CASE
+        Dim intAge As Integer = 20
+        Dim message As String
+
+        Select Case intAge
+            Case 1, 2, 3, 4
+                message = "too young for school"
+            Case 5
+                message = "can go to Kindergarten"
+            Case 6 To 18
+                message = "go to grade " & intAge - 5
+            Case Else           '<---------Case Else is equal to Default situation
+                message = "Go to College"
+        End Select
+
+        'FOR
+        For i As Integer = 1 To 10
+            'print something
+        Next
+
+        'FOR WITH DIFFERENT INCREMENT
+        For i As Integer = 1 To 50 Step 10
+            If i = 40 Then Exit For  '<---To exit For loop prematurely. Also, Exit Sub can be used
+        Next
+
+        'FOR EACH (good to use with Arrays)
+        Dim Employees = New String() {"Paul", "Sally", "Jack"}
+        For Each person As String In Employees     'creating a variable of the same type, holds one position of the array at the time
+            Console.WriteLine(person & Environment.NewLine) 'printing that variable
+        Next
+
+        'DO WHILE (Means loop while condition is true, break when condition is false)
+        'DO UNTIL (Means loop while condition is False, break when condition is True)
+        Dim numberGuessed As Integer = 0
+        Do Until numberGuessed = 10
+            numberGuessed += 1
+        Loop
+
+
+
+
+        'CREATE A RANDOM VALUE (in the range we want)
+        Dim UpperBound = 0
+        Dim LowerBound = 10
+        Dim RandomValue = CInt(Math.Floor((UpperBound - LowerBound + 1) * Rnd())) + LowerBound
+
+
+    End Sub
+
+
+End Class
