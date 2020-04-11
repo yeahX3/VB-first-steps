@@ -148,4 +148,60 @@ Public Class Form1
         'https://docs.microsoft.com/en-us/visualstudio/debugger/using-tracepoints?view=vs-2019
 
     End Sub
+    '-----------------------------------------------------------------------------------------------
+    '--------------------------------FORMATTING DATE TYPE----------------------------------------------
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnDateType.Click
+        Dim strResult As String
+        strResult = ""
+
+        'SETTING CURRENT DATE
+        Dim dteCurrent = Now
+
+        'MONTH
+        strResult = strResult & "Current Month is: " & dteCurrent.Month & Environment.NewLine
+
+        'DAY (Actualy shows date)
+        strResult = strResult & "Current day is: " & dteCurrent.Day & Environment.NewLine
+
+        'YEAR
+        strResult = strResult & "Current Year is: " & dteCurrent.Year & Environment.NewLine
+
+        'HOUR
+        strResult = strResult & "Current Hour is: " & dteCurrent.Hour & Environment.NewLine
+
+        'MINUTE
+        strResult = strResult & "Current Minute is: " & dteCurrent.Minute & Environment.NewLine
+
+        'SECOND
+        strResult = strResult & "Current Second is: " & dteCurrent.Second & Environment.NewLine
+
+        'DAY(name of the day)
+        strResult = strResult & "Current Day (name of day) is: " & dteCurrent.ToString("dddd") & Environment.NewLine
+
+        'MONTH
+        strResult = strResult & "Current Month (name of month) is: " & dteCurrent.ToString("MMMM") & Environment.NewLine
+
+        'CREATING A CUSTOM DATE
+        Dim dteImportantDate = #12/21/1974 11:32:00 AM#
+        strResult = strResult & "Made up date: " & dteImportantDate & Environment.NewLine
+
+        'PRINTING TIME IN LONG FORMAT
+        strResult = strResult & "Time in Long format: " & dteImportantDate.ToLongTimeString & Environment.NewLine
+
+        'PRINTING TIME IN SHORT FORMAT
+        strResult = strResult & "Time in Short format: " & dteImportantDate.ToShortTimeString & Environment.NewLine
+
+
+        'PRINTING DATE IN LONG FORMAT
+        strResult = strResult & "Date in Long format: " & dteImportantDate.ToLongDateString & Environment.NewLine
+
+        'PRINTING DATE IN SHORT FORMAT
+        strResult = strResult & "Date in Short format: " & dteImportantDate.ToShortDateString & Environment.NewLine
+
+
+        txtOutput.Text = strResult
+
+    End Sub
 End Class
+
