@@ -398,4 +398,58 @@ Public Class Form1
 
         txtOutput.Text = "Random vlue between 0 ans 10 is: " & RandomValue
     End Sub
+'--------------------------------------------------------------------------------------------------
+'--------------------------------ARRAYLIST---------------------------------------------------------
+
+    Private Sub btnArrayList_Click(sender As Object, e As EventArgs) Handles btnArrayList.Click
+        Dim strOutput As String = ""
+
+        'CREATE ARRAYLIST
+        Dim customers As New ArrayList
+
+        'INPUT VALUES
+        strOutput += "Inserting names'Bob' and 'John' "
+        customers.Add("Bob")
+        customers.Add("John")
+
+        'SIZE
+        strOutput += "Current size of ArrayList is: " & customers.Count & Environment.NewLine
+
+        'MAX SIZE
+        strOutput += "Maximun capaciyt is: " & customers.Capacity & Environment.NewLine
+
+        'INSERTING AT A SPECIFIC POSITION
+        strOutput += "Inserting name 'Vin Diesel' at position 1" & Environment.NewLine
+        customers.Insert(1, "Vin Diesel")
+
+        'REMOVING AN ELEMENT ASED ON ITS CONTENT
+        strOutput += "Removing an element based on its content, rempoving John" & Environment.NewLine
+        customers.Remove("John")
+
+        'SORTING ELEMENTS ALPHABETICALLY
+        strOutput += "Sorting elements alphabetically" & Environment.NewLine
+        customers.Sort()
+
+        'REVERSING ELEMENTS
+        strOutput += "Reversing elements" & Environment.NewLine
+        customers.Reverse()
+
+        'SEARCHING IF ARRAYLIST CONTAINS A VALUE
+        strOutput += "Searching if ArrayList contains Value 'Bob' : " & customers.Contains("Bob") & Environment.NewLine
+
+        'INDEX OF A VALUE
+        strOutput += "Searching index of Value 'Bob' : " & customers.IndexOf("Bob") & Environment.NewLine
+
+        'COPYING ARRAYLIST INTO AN ARRAY
+        strOutput += "Copying ArrayLst into an array" & Environment.NewLine
+        Dim arrayCustomers(2) As String
+        customers.CopyTo(arrayCustomers)
+
+        For i As Integer = 0 To arrayCustomers.Length - 1
+            strOutput += arrayCustomers(i) & Environment.NewLine
+        Next
+
+        txtOutput.Text = strOutput
+    End Sub
 End Class
+
