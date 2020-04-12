@@ -451,5 +451,29 @@ Public Class Form1
 
         txtOutput.Text = strOutput
     End Sub
+
+    '--------------------------------------------------------------------------------------------------
+    '--------------------------------ENUMERATIONS------------------------------------------------------
+    'DECLARING AN ENUM (very importatnt to declare it outside any SubRoutine)
+    Private Enum Season As Integer
+        Spring = 0
+        Summer = 1
+        Fall = 2
+        Winter = 3
+    End Enum
+
+    Private Sub btnEnum_Click(sender As Object, e As EventArgs) Handles btnEnum.Click
+        Dim strOutput As String = ""
+
+        'DECLARING A VARIABLE WITH OUR ENUM TYPE
+        Dim currentSeason As Season
+
+        'ASSIGNING A VALUE TO IT
+        currentSeason = Season.Spring
+
+        strOutput += "The current Season is " & currentSeason.ToString & Environment.NewLine
+
+
+    End Sub
 End Class
 
