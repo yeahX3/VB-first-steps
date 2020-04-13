@@ -8,4 +8,11 @@ Friend Class Cat
     Public Function aboutCat() As String
         Return AnimalInfo() & Cleans() & Environment.NewLine
     End Function
+
+    Public Overrides Function getAnimalType() As String
+        Return "Cat"
+    End Function
+
+
 End Class
+
