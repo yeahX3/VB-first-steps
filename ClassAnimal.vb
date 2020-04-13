@@ -1,30 +1,35 @@
 Imports Microsoft.VisualBasic
 
-Public Class Animal
+Friend Class Animal
     Public height As Decimal = 0.0
     Public weight As Decimal = 0.0
     Public speed As Decimal = 0.0
 
-    Private Name As String
+    Private name As String
+
 
     'Properties restict acces by giving Get and Set methods
     'good for when we want to return more than just the content of the Variable name
     'readOnly vs WriteOnly
     'Also good for Encapsulation, we can test the type of incomming value before assigning it
-    '
     Public ReadOnly Property getName() As String
         Get
-            Return "Name is: " & Name
+            Return name
         End Get
     End Property
 
     Public Sub setName(value As String)
         If IsNumeric(value) Then
-            MessageBox.Show("Name can not contain numbers", "Error")
+            MessageBox.Show("Testing Error by entering invalid data", "Error")
         Else
-            Name = value
+            name = value
         End If
+
     End Sub
+
+    Public Function AnimalInfo()
+        Return "The name is: " & getName() & Environment.NewLine
+    End Function
 
     '--------------------------------------------------------------------------------------------------
     '--------------------------------CONSTRUCTOR-------------------------------------------------------
@@ -37,15 +42,14 @@ Public Class Animal
         height = ht
         weight = wt
         speed = spd
-        Name = nam
+        name = nam
     End Sub
 
 
     'This function is 'Overridable' by sub-clasess
     Public Overridable Function Run() As String     'returns a String
-        Return Name & " Runs " & speed & "KPH"
+        Return name & " Runs " & speed & "KPH"
 
     End Function
-
-
 End Class
+
