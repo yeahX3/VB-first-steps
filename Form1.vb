@@ -398,8 +398,8 @@ Public Class Form1
 
         txtOutput.Text = "Random vlue between 0 ans 10 is: " & RandomValue
     End Sub
-'--------------------------------------------------------------------------------------------------
-'--------------------------------ARRAYLIST---------------------------------------------------------
+    '--------------------------------------------------------------------------------------------------
+    '--------------------------------ARRAYLIST---------------------------------------------------------
 
     Private Sub btnArrayList_Click(sender As Object, e As EventArgs) Handles btnArrayList.Click
         Dim strOutput As String = ""
@@ -451,7 +451,6 @@ Public Class Form1
 
         txtOutput.Text = strOutput
     End Sub
-
     '--------------------------------------------------------------------------------------------------
     '--------------------------------ENUMERATIONS------------------------------------------------------
     'DECLARING AN ENUM (very importatnt to declare it outside any SubRoutine)
@@ -475,5 +474,87 @@ Public Class Form1
 
 
     End Sub
+
+    '--------------------------------------------------------------------------------------------------
+    '--------------------------------STRUCTURES, CLASSES, INHERITANCE, POLYMOPHISM---------------------
+    'LIKE CLASSES IN JAVA
+    'Keep structures outside Subroutines
+    Public Structure Employee
+        Public name As String
+        Public position As String
+        Public salary As Decimal
+
+        Public ReadOnly Property fullInfo() As String
+            Get
+                Return name & " is a " & position & " and makes $" & salary & Environment.NewLine
+            End Get
+        End Property
+    End Structure
+
+    Private Sub btnStructures_Click(sender As Object, e As EventArgs) Handles btnStructures.Click
+        Dim strOutput As String = ""
+
+        strOutput += "Creating a structure called 'bobSmith' which has information about him'" & Environment.NewLine
+
+        Dim bobSmith As Employee
+        'populating information
+        bobSmith.name = "Bob Smith"
+        bobSmith.position = "Manager"
+        bobSmith.salary = 50000
+
+        'displaying information
+
+        strOutput += bobSmith.name & " is a " & bobSmith.position & " and makes $" & bobSmith.salary & Environment.NewLine
+
+
+        'Creating an instance of the class Animal
+        Dim dog As New Animal With {
+            .weight = 77.5,
+            .height = 25.5,
+            .speed = 30.0
+            }
+
+        dog.setName("10") 'Testing giving an invalid value for name
+
+        strOutput += "Testing creating an instance of Animal Class" & Environment.NewLine
+        strOutput += "The name of dog is: " & dog.getName() & Environment.NewLine
+
+
+        strOutput += "Creating instance of Cat, who inherits from Animal" & Environment.NewLine
+
+
+
+        'INHERITANCE---------------------------------
+        Dim myCat As New Cat()
+        myCat.setName("Mittens")
+
+        strOutput += myCat.aboutCat()
+
+
+        'POLYMORPHISM---------------------------------
+        'A subclass(in this case Cat) can be refered by the type of its parent class
+        strOutput += "Testing Polymorphism by refering to cat as Animal class" & Environment.NewLine
+        strOutput += showDetails(myCat) 'Function declared outside this form (see at bottom of file)
+        strOutput += testPoplymorphism(myCat) 'Function declared outside this form (see at bottom of file)
+
+
+
+        txtOutput.Text = strOutput
+
+    End Sub
+    Public Function showDetails(theAnimal As Animal)
+        Return theAnimal.AnimalInfo()
+    End Function
+
+    Public Function testPoplymorphism(beast As Animal) As String
+        'Testing by referencing by parent class, then calling overridable function
+        Return beast.getAnimalType()
+    End Function
+
+
+    Private Sub btnClasses_Click(sender As Object, e As EventArgs) Handles btnClasses.Click
+
+    End Sub
 End Class
+
 
