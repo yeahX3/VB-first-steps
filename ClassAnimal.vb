@@ -1,6 +1,4 @@
-Imports Microsoft.VisualBasic
-
-Friend Class Animal
+Public Class Animal
     Public height As Decimal = 0.0
     Public weight As Decimal = 0.0
     Public speed As Decimal = 0.0
@@ -31,6 +29,10 @@ Friend Class Animal
         Return "The name is: " & getName() & Environment.NewLine
     End Function
 
+    Public Overridable Function getAnimalType() As String
+        Return "Generic Animal"
+    End Function
+
     '--------------------------------------------------------------------------------------------------
     '--------------------------------CONSTRUCTOR-------------------------------------------------------
 
@@ -46,10 +48,13 @@ Friend Class Animal
     End Sub
 
 
+
+
     'This function is 'Overridable' by sub-clasess
     Public Overridable Function Run() As String     'returns a String
         Return name & " Runs " & speed & "KPH"
 
     End Function
 End Class
+
 
