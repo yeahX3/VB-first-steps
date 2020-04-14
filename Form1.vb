@@ -1,4 +1,6 @@
-Public Class Form1
+Imports System         '<---Imports Used in the "Save to file, Opening file" section
+Imports System.IO
+Public Class btnSharedP
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         txtName.Text = "Hello " & txtName.Text
 
@@ -551,10 +553,78 @@ Public Class Form1
         Return beast.getAnimalType()
     End Function
 
-
+    '--------------------------------------------------------------------------------------------------
+    '--------------------------------SHARED PROPERTIES-------------------------------------------------
+    'Shared properties is equal to static variables in Java, in java define a class variable as
+    'static to have it shared by all instances of the class (one copy for all opposed to one copy per instance)
+    'The Animal Class (parent class) has a 'shared' variable (static in java) called numOfAnimals, 
+    'that is used to count how many instances have been created.
     Private Sub btnClasses_Click(sender As Object, e As EventArgs) Handles btnClasses.Click
+
+        Dim strOutput As String = ""
+
+        strOutput += CType(Animal.numOfAnimals, String) & " instances o Animal or its subclasses have been created " & Environment.NewLine
+
+        strOutput += Animal.createInstance()
+        strOutput += Animal.createInstance()
+        strOutput += Animal.createInstance()
+
+        strOutput += CType(Animal.numOfAnimals, String) & " instances o Animal or its subclasses have been created" & Environment.NewLine
+        txtOutput.Text = strOutput
+
+    End Sub
+    '--------------------------------------------------------------------------------------------------
+    '-----------------------SAVING TO FILE,APPENDING TO FILE, OPENING FILE-----------------------------
+    'Imports System         <---This imports are needed, but must be on top line of file
+    'Imports System.IO
+    Private Sub btnFiles_Click(sender As Object, e As EventArgs) Handles btnFiles.Click
+        Dim strOutput As String = ""
+
+        Dim linesOfText() As String = {"Line1", "Line2", "Line3"}       '<---This contains the text to be saved
+
+        'showing original content to form
+        strOutput += "writting on file" & Environment.NewLine
+        For Each str1 As String In linesOfText
+            strOutput += str1 & Environment.NewLine
+        Next
+
+
+        Dim myDocPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) '<--- Save to my documents folder, an folder path is also allowed
+
+        'Declaring file to be writen into
+        Using outputFile As New StreamWriter(myDocPath & Convert.ToString("\myOutputFile.txt"))
+            For Each line As String In linesOfText  'For each loop, save into variable 'line'
+                outputFile.WriteLine(line)             'Write current content of variable 'line'
+            Next
+        End Using
+
+        strOutput += "Written on file" & Environment.NewLine & "Appending " & Environment.NewLine
+
+        'Appending to file
+        Using outputFile As New StreamWriter(myDocPath & Convert.ToString("\myOutputFile.txt"), True) '<-- True means it will append instead of overwritting
+            outputFile.WriteLine("New line" & Environment.NewLine)
+        End Using
+
+        'Reading from file
+
+        Try
+            Using strInput As New StreamReader(myDocPath & Convert.ToString("\myOutputFile.txt"))
+                Dim line As String
+                line = strInput.ReadToEnd()
+
+                strOutput += line & Environment.NewLine
+
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Couldn'True read file", "Error")
+        End Try
+
+
+
+        txtOutput.Text = strOutput
+
+
 
     End Sub
 End Class
-
 
