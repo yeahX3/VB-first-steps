@@ -3,6 +3,8 @@ Public Class Animal
     Public weight As Decimal = 0.0
     Public speed As Decimal = 0.0
 
+    Public Shared numOfAnimals As Integer = 0 '<--used to test shared properties
+
     Private name As String
 
 
@@ -45,6 +47,7 @@ Public Class Animal
         weight = wt
         speed = spd
         name = nam
+        numOfAnimals += 1
     End Sub
 
 
@@ -55,6 +58,19 @@ Public Class Animal
         Return name & " Runs " & speed & "KPH"
 
     End Function
-End Class
 
+    '--------------------------------------------------------------------------------------------------
+    '--------------------------------SHARED PROPERTIES-------------------------------------------------
+    'Shared properties is equal to static variables in Java, in java define a class variable as
+    'static to have it shared by all instances of the class (one copy for all opposed to one copy per instance)
+    'The Animal Class (parent class) has a 'shared' variable (static in java) called numOfAnimals, 
+    'that is used to count how many instances have been created.
+
+    'Public Shared numOfAnimals As Integer   <----- placed at higher up in the file to be able to use it
+
+    Public Shared Function createInstance() As String '<-- shared method that creates instances, to test the shared variable 
+        Dim newAnimal As New Animal()
+        Return "Creating an instance of Animal" & Environment.NewLine
+    End Function
+End Class
 
