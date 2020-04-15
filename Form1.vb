@@ -683,6 +683,43 @@ Public Class btnSharedP
         End If
         txtOutput.Text = strOutput
     End Sub
+    
 
+    '--------------------------------------------------------------------------------------------------
+    '-----------------------------------SAVE FILE DIALOG WINDOW----------------------------------------
+    'NOTE: this doesn't actually ovrwrites a file, it just simulates it does
+    'It is a copy of the OpenFile subRoutine with small changes
+    'any variable called Open is now called Save (e.g. OpenFileDialogEx is now SaveFileDialogEx
+    'String variable 'fileSelected' is declared earlier to be used in SaveFileDialog
+    'Message sent in Try/Catch changes from 'File Selected' to 'File Saved'
+
+    Private Sub btnSaveFile_Click(sender As Object, e As EventArgs) Handles btnSaveFile.Click
+
+        Dim strOutput As String = ""
+        Dim fileSelected As String = "" '<-- will contain the name of the file 
+
+        'Creating instance that contains an openFileDialog
+        Dim SaveFileDialogEx As New SaveFileDialog() With {
+            .Filter = "Text Documents (*.txt)|*.txt|All Files(*.*)|*.*",  '<-- | means 'OR',this filers what type of files to search for.
+            .FilterIndex = 2,  '<-- which filter is used by default, to choose 'All files *.*' use number 2 (starts counting from zero?)
+            .Title = "Open important file", 'For Saving we add the next following lines
+            .DefaultExt = "txt",
+            .FileName = fileSelected,
+            .OverwritePrompt = True 'so it asks if a file is going to be overwriten
+            }
+
+
+
+        If SaveFileDialogEx.ShowDialog = System.Windows.Forms.DialogResult.OK Then '<if user pressed OK button means a file was choosen
+            'but we still are prone to find an error
+
+            Try
+                fileSelected = SaveFileDialogEx.FileName '<--obtain the name of the file selected
+                strOutput += "File Saved : " & fileSelected & Environment.NewLine
+            Catch ex As Exception
+                MessageBox.Show("Error Opening file", "Error")
+            End Try
+        End If
+        txtOutput.Text = strOutput
 End Class
 
