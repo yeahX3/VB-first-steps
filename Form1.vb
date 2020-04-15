@@ -722,5 +722,27 @@ Public Class btnSharedP
         End If
         txtOutput.Text = strOutput
     End Sub
+
+
+    '--------------------------------------------------------------------------------------------------
+    '----------------------------------------FONT WINDOW-----------------------------------------------
+    Private Sub btnFont_Click(sender As Object, e As EventArgs) Handles btnFont.Click
+        Dim strOutput As String = ""
+
+        'Creating an instance of the font window
+        Dim FontDialogEx As New FontDialog() With {
+            .ShowColor = True       'parameter where we indicate we want it to show the color        
+        }
+
+        'Finding out what the user chose
+        'Using an If to see if user pressed OK button
+        If FontDialogEx.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            strOutput &= FontDialogEx.Font.ToString & Environment.NewLine  '<-- extracting the font chosen (stored in an array)
+            strOutput &= "Testing array,extracting the size: " & FontDialogEx.Font.Size & Environment.NewLine
+            strOutput &= FontDialogEx.Color.ToString & Environment.NewLine '<-- extracting the color chosen
+        End If
+
+        txtOutput.Text = strOutput
+    End Sub
 End Class
 
