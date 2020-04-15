@@ -626,5 +626,34 @@ Public Class btnSharedP
 
 
     End Sub
+
+    '--------------------------------------------------------------------------------------------------
+    '-----------------------------------MESSAGEBOX-----------------------------------------------------
+    Private Sub btnMsgBox_Click(sender As Object, e As EventArgs) Handles btnMsgBox.Click
+        Dim strOutput As String = ""
+        'Multiple icons can be used:
+        'Asterisk, Error, Exclamation, Hand, Information, 
+        'Question, Stop, Warning, None
+
+        'Multiple buttons can be used:
+        'AbortRetryIgnore, Ok, OkCancel, RetryCancel, YesNo, YesNoCancel
+
+        'Can set the default highlighted button wit:
+        'Button1, Button2, Button3
+
+        ' A more complicated messagebox
+        MessageBox.Show("Message", "message on title", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1)
+
+        'To find out which button the user pressed, compare it with an If statement
+        If MessageBox.Show("Message", "message on title", MessageBoxButtons.AbortRetryIgnore,
+                           MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1) =
+                                        System.Windows.Forms.DialogResult.Abort Then
+            strOutput += "The user pressed the 'Abort button'"
+
+        Else
+            strOutput += "Something else was clicked"
+
+        End If
+    End Sub
 End Class
 
