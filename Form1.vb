@@ -655,5 +655,34 @@ Public Class btnSharedP
 
         End If
     End Sub
+
+    '--------------------------------------------------------------------------------------------------
+    '-----------------------------------OPEN FILE DIALOG WINDOW----------------------------------------
+    Private Sub btnOpenDialog_Click(sender As Object, e As EventArgs) Handles btnOpenDialog.Click
+        Dim strOutput As String = ""
+
+        'Creating instance that contains an openFileDialog
+        Dim OpenFileDialogEx As New OpenFileDialog() With {
+            .Filter = "Text Documents (*.txt)|*.txt|All Files(*.*)|*.*",  '<-- | means 'OR',this filers what type of files to search for.
+            .FilterIndex = 2,  '<-- which filter is used by default, to choose 'All files *.*' use number 2 (starts counting from zero?)
+            .Title = "Open important file"
+            }
+
+        'Now to determine which file was chosen
+        Dim fileSelected As String  '<-- This will hold the file name
+
+        If OpenFileDialogEx.ShowDialog = System.Windows.Forms.DialogResult.OK Then '<if user pressed OK button means a file was choosen
+            'but we still are prone to find an error
+
+            Try
+                fileSelected = OpenFileDialogEx.FileName '<--obtain the name of the file selected
+                strOutput += "File Selected : " & fileSelected & Environment.NewLine
+            Catch ex As Exception
+                MessageBox.Show("Error Opening file", "Error")
+            End Try
+        End If
+        txtOutput.Text = strOutput
+    End Sub
+
 End Class
 
